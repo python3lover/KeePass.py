@@ -1,4 +1,4 @@
-pykeepass
+KeePass.py
 ============
 
 This library allows you to write entries to a KeePass database
@@ -9,34 +9,34 @@ Simple Example
 
    from pykeepass import PyKeePass
 
-   # load database
+   # Load database
    >>> kp = PyKeePass('db.kdbx', password='somePassw0rd')
 
-   # find any group by its name
+   # Find any group by its name
    >>> group = kp.find_groups(name='social', first=True)
 
-   # get the entries in a group
+   # Get the entries in a group
    >>> group.entries
    [Entry: "social/facebook (myusername)", Entry: "social/twitter (myusername)"]
 
-   # find any entry by its title
+   # Find any entry by its title
    >>> entry = kp.find_entries(title='facebook', first=True)
 
-   # retrieve the associated password
+   # Retrieve the associated password
    >>> entry.password
    's3cure_p455w0rd'
 
-   # update an entry
+   # Update an entry
    >>> entry.notes = 'primary facebook account'
 
-   # create a new group
+   # Create a new group
    >>> group = kp.add_group(kp.root_group, 'email')
 
-   # create a new entry
+   # Create a new entry
    >>> kp.add_entry(group, 'gmail', 'myusername', 'myPassw0rdXX')
    Entry: "email/gmail (myusername)"
 
-   # save database
+   # Save database
    >>> kp.save()
 
 
