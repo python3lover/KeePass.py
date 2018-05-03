@@ -40,7 +40,7 @@ This library allows you to write entries to a KeePass database
 
 ## Finding Entries
 
-~**find_entries**(title=None, username=None, password=None, url=None, notes=None, path=None, uuid=None, string=none, regex=False, flags=None, tree=None, history=False, first=False)~
+**find_entries**(title=None, username=None, password=None, url=None, notes=None, path=None, uuid=None, string=none, regex=False, flags=None, tree=None, history=False, first=False)
 
 Returns entries which match all provided parameters, where `title`, `username`, `password`, `url`, `notes`, `path` and `uuid` are strings, `string` is a dict.  This function has optional `regex` boolean and `flags` string arguments, which means to interpret search strings as `XSLT style`_ regular expressions with `flags`_.
 
