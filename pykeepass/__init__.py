@@ -1,3 +1,3 @@
 from __future__ import absolute_import
-from .pykeepass import PyKeePass
+from .keepass import KeePass
 from libkeepass import open
