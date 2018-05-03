@@ -18,7 +18,7 @@ from pykeepass.group import Group
 logger = logging.getLogger(__name__)
 
 
-class PyKeePass(object):
+class KeePass(object):
 
     def __init__(self, filename, password=None, keyfile=None):
         self.kdb_filename = filename
