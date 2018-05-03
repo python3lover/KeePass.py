@@ -144,6 +144,7 @@ A flattened list of all groups in the database
 
    >>> kp.root_group
    Group: "/"
+```
 
 For backwards compatibility, the following functions are also available:
 
@@ -156,8 +157,8 @@ For backwards compatibility, the following functions are also available:
 `**find_groups_by_notes** (notes, tree=None, regex=False, flags=None, first=False)`
 
 
-Adding Entries
---------------
+## Adding Entries
+
 `**add_entry** (destination_group, title, username, password, url=None, notes=None, tags=None, expiry_time=None, icon=None, force_creation=False)`
 
 `**delete_entry** (entry)`
@@ -235,7 +236,3 @@ Where `filename` is the path of the file to save to.  If `filename` is not given
 `**set_credentials** (password=None, keyfile=None)`
 
 Clear current database credentials and set to the ones given.  `password` and `keyfile` are strings.  At least one of `password` and `keyfile` is required
-
-## Tests
-
-To run them issue `$ python tests/tests.py`
