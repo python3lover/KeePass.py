@@ -1,11 +1,9 @@
-KeePass.py
-============
+# KeePass.py
 
 This library allows you to write entries to a KeePass database
 
-Simple Example
---------------
-.. code:: python
+## Simple Example
+```python3
 
    from pykeepass import PyKeePass
 
@@ -38,30 +36,29 @@ Simple Example
 
    # Save database
    >>> kp.save()
+```
 
+## Finding Entries
 
-Finding Entries
-----------------------
+~**find_entries**(title=None, username=None, password=None, url=None, notes=None, path=None, uuid=None, string=none, regex=False, flags=None, tree=None, history=False, first=False)~
 
-**find_entries** (title=None, username=None, password=None, url=None, notes=None, path=None, uuid=None, string=none, regex=False, flags=None, tree=None, history=False, first=False)
+Returns entries which match all provided parameters, where `title`, `username`, `password`, `url`, `notes`, `path` and `uuid` are strings, `string` is a dict.  This function has optional `regex` boolean and `flags` string arguments, which means to interpret search strings as `XSLT style`_ regular expressions with `flags`_.
 
-Returns entries which match all provided parameters, where ``title``, ``username``, ``password``, ``url``, ``notes``, ``path`` and ``uuid`` are strings, ``string`` is a dict.  This function has optional ``regex`` boolean and ``flags`` string arguments, which means to interpret search strings as `XSLT style`_ regular expressions with `flags`_.
+[_XSLT style](https://www.xml.com/pub/a/2003/06/04/tr.html)
+[_flags](https://www.w3.org/TR/xpath-functions/#flags)
 
-.. _XSLT style: https://www.xml.com/pub/a/2003/06/04/tr.html
-.. _flags: https://www.w3.org/TR/xpath-functions/#flags 
+The `path` string can be a direct path to an entry, or (when ending in `/`) the path to the group to recursively search under.
 
-The ``path`` string can be a direct path to an entry, or (when ending in ``/``) the path to the group to recursively search under.
+The `string` dict allows for searching custom string fields.  ex. `{'custom_field1': 'custom value', 'custom_field2': 'custom value'}`
 
-The ``string`` dict allows for searching custom string fields.  ex. ``{'custom_field1': 'custom value', 'custom_field2': 'custom value'}``
+The `history` (default `False`) boolean controls whether history entries should be included in the search results.
 
-The ``history`` (default ``False``) boolean controls whether history entries should be included in the search results.
+The `first` (default `False`) boolean controls whether to return the first matched item, or a list of matched items.
 
-The ``first`` (default ``False``) boolean controls whether to return the first matched item, or a list of matched items.
+* if `first=False`, the function returns a list of `Entry` s or `[]` if there are no matches
+* if `first=True`, the function returns the first `Entry` match, or `None` if there are no matches
 
-* if ``first=False``, the function returns a list of ``Entry`` s or ``[]`` if there are no matches
-* if ``first=True``, the function returns the first ``Entry`` match, or ``None`` if there are no matches
-
-**entries**
+### Entries
 
 a flattened list of all entries in the database
 
@@ -126,9 +123,9 @@ the ``Root`` group to the database
 
 **groups**
 
-a flattened list of all groups in the database
+A flattened list of all groups in the database
 
-.. code:: python
+```python3
 
    >>> kp.groups
    [Group: "foo", Group "foobar", Group: "social", Group: "social/foo_subgroup"]
@@ -150,96 +147,95 @@ a flattened list of all groups in the database
 
 For backwards compatibility, the following functions are also available:
 
-**find_groups_by_name** (name, tree=None, regex=False, flags=None, first=False)
+`**find_groups_by_name** (name, tree=None, regex=False, flags=None, first=False)`
 
-**find_groups_by_path** (path, tree=None, regex=False, flags=None, first=False)
+`**find_groups_by_path** (path, tree=None, regex=False, flags=None, first=False)`
 
-**find_groups_by_uuid** (uuid, tree=None, regex=False, flags=None, first=False)
+`**find_groups_by_uuid** (uuid, tree=None, regex=False, flags=None, first=False)`
 
-**find_groups_by_notes** (notes, tree=None, regex=False, flags=None, first=False)
+`**find_groups_by_notes** (notes, tree=None, regex=False, flags=None, first=False)`
 
 
 Adding Entries
 --------------
-**add_entry** (destination_group, title, username, password, url=None, notes=None, tags=None, expiry_time=None, icon=None, force_creation=False)
+`**add_entry** (destination_group, title, username, password, url=None, notes=None, tags=None, expiry_time=None, icon=None, force_creation=False)`
 
-**delete_entry** (entry)
+`**delete_entry** (entry)`
 
-**move_entry** (entry, destination_group)
+`**move_entry** (entry, destination_group)`
 
-where ``destination_group`` is a ``Group`` instance.  ``entry`` is an ``Entry`` instance. ``title``, ``username``, ``password``, ``url``, ``notes``, ``tags``, ``icon`` are strings. ``expiry_time`` is a ``datetime`` instance.
+where `destination_group` is a `Group` instance.  `entry` is an `Entry` instance. `title`, `username`, `password`, `url`, `notes`, `tags`, `icon` are strings. `expiry_time` is a `datetime` instance.
 
-If ``expiry_time`` is a naive datetime object (i.e. ``expiry_time.tzinfo`` is not set), the timezone is retrieved from ``dateutil.tz.gettz()``.
+If `expiry_time` is a naive datetime object (i.e. `expiry_time.tzinfo` is not set), the timezone is retrieved from `dateutil.tz.gettz()`.
 
-.. code:: python
+```python3
 
-   # add a new entry to the Root group
+   # Add a new entry to the Root group
    >>> kp.add_entry(kp.root_group, 'testing', 'foo_user', 'passw0rd')
    Entry: "testing (foo_user)"
 
-   # add a new entry to the social group
+   # Add a new entry to the social group
    >>> group = find_groups(name='social', first=True)
    >>> entry = kp.add_entry(group, 'testing', 'foo_user', 'passw0rd')
    Entry: "testing (foo_user)"
 
-   # save the database
+   # Save the database
    >>> kp.save()
 
-   # delete an entry
+   # Delete an entry
    >>> kp.delete_entry(entry)
 
-   # move an entry
+   # Move an entry
    >>> kp.move_entry(entry, kp.root_group)
 
-   # save the database
+   # Save the database
    >>> kp.save()
 
-Adding Groups
---------------
-**add_group** (destination_group, group_name, icon=None, notes=None)
+## Adding Groups
 
-**delete_group** (group)
+`**add_group** (destination_group, group_name, icon=None, notes=None)`
 
-**move_group** (group, destination_group)
+`**delete_group** (group)`
 
-``destination_group`` and ``group`` are instances of ``Group``.  ``group_name`` is a string
+`**move_group** (group, destination_group)`
 
-.. code:: python
+`destination_group` and `group` are instances of `Group`.  `group_name` is a string
 
-   # add a new group to the Root group
+```python3
+
+   # Add a new group to the Root group
    >>> group = kp.add_group(kp.root_group, 'social')
 
-   # add a new group to the social group
+   # Add a new group to the social group
    >>> group2 = kp.add_group(group, 'gmail')
    Group: "social/gmail"
 
-   # save the database
+   # Save the database
    >>> kp.save()
 
-   # delete a group
+   # Delete a group
    >>> kp.delete_group(group)
 
-   # move a group
+   # Move a group
    >>> kp.move_group(group2, kp.root_group)
 
-   # save the database
+   # Save the database
    >>> kp.save()
 
-Miscellaneous
--------------
-**read** (filename, password=None, keyfile=None)
+## Miscellaneous
 
-where ``filename``, ``password``, and ``keyfile`` are strings.  ``filename`` is the path to the database, ``password`` is the master password string, and ``keyfile`` is the path to the database keyfile.  At least one of ``password`` and ``keyfile`` is required.
+`**read** (filename, password=None, keyfile=None)`
 
-**save** (filename=None)
+Where `filename`, `password`, and `keyfile` are strings.  `filename` is the path to the database, `password` is the master password string, and `keyfile` is the path to the database keyfile.  At least one of `password` and `keyfile` is required.
 
-where ``filename`` is the path of the file to save to.  If ``filename`` is not given, the path given in ``read`` will be used.
+`**save** (filename=None)`
 
-**set_credentials** (password=None, keyfile=None)
+Where `filename` is the path of the file to save to.  If `filename` is not given, the path given in `read` will be used.
 
-clear current database credentials and set to the ones given.  ``password`` and ``keyfile`` are strings.  At least one of ``password`` and ``keyfile`` is required
+`**set_credentials** (password=None, keyfile=None)`
 
-Tests
--------------
+Clear current database credentials and set to the ones given.  `password` and `keyfile` are strings.  At least one of `password` and `keyfile` is required
 
-To run them issue :code:`$ python tests/tests.py`
+## Tests
+
+To run them issue `$ python tests/tests.py`
