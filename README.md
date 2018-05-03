@@ -62,7 +62,7 @@ The `first` (default `False`) boolean controls whether to return the first match
 
 a flattened list of all entries in the database
 
-.. code:: python
+```
 
    >>> kp.entries
    [Entry: "foo_entry (myusername)", Entry: "foobar_entry (myusername)", Entry: "social/gmail (myusername)", Entry: "social/facebook (myusername)"]
@@ -81,47 +81,47 @@ a flattened list of all entries in the database
 
    >>> kp.find_groups_by_name('social', first=True).entries
    [Entry: "social/gmail (myusername)", Entry: "social/facebook (myusername)"]
+```
 
 For backwards compatibility, the following function are also available:
 
-**find_entries_by_title** (title, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_title** (title, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_username** (username, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_username** (username, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_password** (password, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_password** (password, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_url** (url, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_url** (url, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_notes** (notes, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_notes** (notes, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_path** (path, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_path** (path, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_uuid** (uuid, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_uuid** (uuid, regex=False, flags=None, tree=None, history=False, first=False)`
 
-**find_entries_by_string** (string, regex=False, flags=None, tree=None, history=False, first=False)
+`**find_entries_by_string** (string, regex=False, flags=None, tree=None, history=False, first=False)`
 
-Finding Groups
-----------------------
+## Finding Groups
 
-**find_groups** (name=None, path=None, uuid=None, notes=None tree=None, regex=False, flags=None, first=False)
+`**find_groups** (name=None, path=None, uuid=None, notes=None tree=None, regex=False, flags=None, first=False)`
 
-where ``name``, ``path``, ``uuid`` and ``notes`` are strings.  This function has optional ``regex`` boolean and ``flags`` string arguments, which means to interpret search strings as `XSLT style`_ regular expressions with `flags`_.
+Where `name`, `path`, `uuid` and `notes` are strings.  This function has optional `regex` boolean and `flags` string arguments, which means to interpret search strings as `XSLT style`_ regular expressions with `flags`_.
 
-.. _XSLT style: https://www.xml.com/pub/a/2003/06/04/tr.html
-.. _flags: https://www.w3.org/TR/xpath-functions/#flags 
+[_XSLT style](https://www.xml.com/pub/a/2003/06/04/tr.html)
+[_flags](https://www.w3.org/TR/xpath-functions/#flags)
 
-The ``path`` string must end in ``/``.
+The `path` string must end in `/`.
 
-The ``first`` (default ``False``) boolean controls whether to return the first matched item, or a list of matched items.
+The `first` (default `False`) boolean controls whether to return the first matched item, or a list of matched items.
 
-* if ``first=False``, the function returns a list of ``Group`` s or ``[]`` if there are no matches
-* if ``first=True``, the function returns the first ``Group`` match, or ``None`` if there are no matches
+* if `first=False`, the function returns a list of `Group` s or `[]` if there are no matches
+* if `first=True`, the function returns the first `Group` match, or `None` if there are no matches
 
-**root_group**
+`**root_group**`
 
-the ``Root`` group to the database
+The ``Root`` group to the database
 
-**groups**
+`**groups**`
 
 A flattened list of all groups in the database
 
