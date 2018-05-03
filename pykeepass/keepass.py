@@ -48,7 +48,7 @@ class KeePass(object):
             self.kdb.write_to(outfile)
 
     # clear and set the database credentials
-    def set_credentials(self, password=None, keyfile=None):
+    def setCredentials(self, password=None, keyfile=None):
         if password or keyfile:
             credentials = {}
             if password:
@@ -72,7 +72,7 @@ class KeePass(object):
     def entries(self):
         return self.find_entries_by_title('.*', regex=True)
 
-    def dump_xml(self, outfile):
+    def dumpXml(self, outfile):
         '''
         Dump the content of the database to a file
         NOTE The file is unencrypted!
@@ -160,7 +160,7 @@ class KeePass(object):
 
     #---------- Groups ----------
 
-    def find_groups(self, first=False, **kwargs):
+    def findGroups(self, first=False, **kwargs):
 
         keys_xp = {
             'prefix': './/Group',
@@ -177,7 +177,7 @@ class KeePass(object):
         return res
 
 
-    def find_groups_by_path(self, group_path_str=None, regex=False, flags=None,
+    def findGroupsByPath(self, group_path_str=None, regex=False, flags=None,
                             tree=None, first=False):
 
         return self.find_groups(name=group_name,
