@@ -191,6 +191,7 @@ If `expiry_time` is a naive datetime object (i.e. `expiry_time.tzinfo` is not se
 
    # Save the database
    >>> kp.save()
+```
 
 ## Adding Groups
 
@@ -222,6 +223,7 @@ If `expiry_time` is a naive datetime object (i.e. `expiry_time.tzinfo` is not se
 
    # Save the database
    >>> kp.save()
+```
 
 ## Miscellaneous
 
